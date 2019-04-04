@@ -1,15 +1,41 @@
 import React from "react";
 
 const Form = props => {
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (props.isUpdating) {
+      props.updateFriend();
+    } else {
+      console.log('nope');
+    }
+  }
+
   return (
     <>
-      <form>
-        <input type="text" name="name" placeholder="Name" />
-        <input type="number" name="age" placeholder="Age" />
-        <input type="text" name="email" placeholder="Email" />
-        <button type="submit">
-          <strong>Add Friend</strong>
-        </button>
+      <h2>Update Friends</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          onChange={props.handleChanges}
+          value={props.friend.name}
+        />
+        <input
+          type="number"
+          name="age"
+          placeholder="Age"
+          onChange={props.handleChanges}
+          value={props.friend.age}
+        />
+        <input
+          type="text"
+          name="email"
+          placeholder="Email"
+          onChange={props.handleChanges}
+          value={props.friend.email}
+        />
+        <button type="submit">Update</button>
       </form>
     </>
   );
